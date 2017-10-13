@@ -2,10 +2,10 @@ package conf
 
 import (
 	"bytes"
+	"gopkg.in/yaml.v1"
 	"io/ioutil"
 	"log"
 	"os"
-	"gopkg.in/yaml.v1"
 )
 
 type configuration struct {
@@ -38,7 +38,7 @@ func ParseConfig(configFile string) {
 	content = bytes.TrimSpace(content)
 
 	if err = yaml.Unmarshal(content, &Conf); err != nil {
-		log.Panicf("unmarshal toml object error. %v", err)
+		log.Panicf("unmarshal yaml object error. %v", err)
 		return
 	}
 }

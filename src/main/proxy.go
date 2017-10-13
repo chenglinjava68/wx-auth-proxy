@@ -1,12 +1,12 @@
 package main
 
 import (
+	"conf"
+	"flag"
+	"fmt"
 	"log"
 	"net/http"
-	"flag"
-	"wx-auth-proxy/conf"
 	"net/url"
-	"fmt"
 )
 
 const (
@@ -65,7 +65,7 @@ func redirect(w http.ResponseWriter, r *http.Request) {
 		authQuery.Set("redirect_uri", redirectUri)
 		authQuery.Set("response_type", "code")
 		authQuery.Set("scope", scope)
-		authQuery.Set("state", state + "#wechat_redirect")
+		authQuery.Set("state", state+"#wechat_redirect")
 
 		authUrl.RawQuery = authQuery.Encode()
 

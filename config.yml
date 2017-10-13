@@ -12,6 +12,6 @@ key_param: key
 
 #重定向URL key-value映射
 redirect_urls:
-  prod: 'http://h5.tonglvhuanqiu.com/shop/',
-  test: 'http://h5.test.tonglvhuanqiu.com/shop/#/',
-  local: 'http://localhost:3001/shop/'
+  prod: "http://h5.tonglvhuanqiu.com/shop/"
+  test: "http://h5.test.tonglvhuanqiu.com/shop/#/"
+  local: "http://localhost:3001/shop/"
