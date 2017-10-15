@@ -65,9 +65,10 @@ func redirect(w http.ResponseWriter, r *http.Request) {
 		authQuery.Set("redirect_uri", redirectUri)
 		authQuery.Set("response_type", "code")
 		authQuery.Set("scope", scope)
-		authQuery.Set("state", state+"#wechat_redirect")
+		authQuery.Set("state", state)
 
 		authUrl.RawQuery = authQuery.Encode()
+		authUrl.Fragment = "wechat_redirect"
 
 		finalUrl = authUrl.String()
 	}
