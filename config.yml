@@ -1,8 +1,8 @@
 #监听端口
 listen: ":3030"
 
-#http or https
-scheme: "http"
+#proxy host
+host: "http://auth.tonglvhuanqiu.com"
 
 #微信公众号App Id
 appid: wxec9acece471f1e8e

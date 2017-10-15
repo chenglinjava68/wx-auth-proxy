@@ -55,7 +55,7 @@ func redirect(w http.ResponseWriter, r *http.Request) {
 		passedQuery.Del("state")
 		passedQuery.Add(isFromWeixinParam, isFromWeixinValue)
 		r.URL.RawQuery = passedQuery.Encode()
-		redirectUri := conf.Conf.Scheme + "://" + r.Host + r.URL.String()
+		redirectUri := conf.Conf.Host + r.URL.String()
 
 		authUrl, _ := url.Parse("https://open.weixin.qq.com/connect/oauth2/authorize")
 
