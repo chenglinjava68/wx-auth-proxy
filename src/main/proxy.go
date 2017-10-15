@@ -24,7 +24,7 @@ func redirect(w http.ResponseWriter, r *http.Request) {
 		if key := r.Form[conf.Conf.KeyParam]; len(key) > 0 {
 			if redirectUrl := conf.Conf.RedirectUrls[key[0]]; len(redirectUrl) > 0 {
 
-				u, _ := url.Parse(redirectUrl)
+				u, _ := url.Parse("")
 
 				q := r.URL.Query()
 
@@ -36,7 +36,7 @@ func redirect(w http.ResponseWriter, r *http.Request) {
 
 				u.RawQuery = q.Encode()
 
-				finalUrl = u.String()
+				finalUrl = redirectUrl + u.String()
 
 			}
 		}
