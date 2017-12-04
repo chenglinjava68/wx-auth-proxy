@@ -1,10 +1,8 @@
-package main
+package api
 
 import (
-	"conf"
-	"flag"
+	"wx-auth-proxy/conf"
 	"fmt"
-	"log"
 	"net/http"
 	"net/url"
 )
@@ -14,7 +12,7 @@ const (
 	isFromWeixinValue = "true"
 )
 
-func redirect(w http.ResponseWriter, r *http.Request) {
+func ProxyHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 
 	finalUrl := ""
@@ -75,22 +73,6 @@ func redirect(w http.ResponseWriter, r *http.Request) {
 	if len(finalUrl) > 0 {
 		fmt.Println(finalUrl)
 		http.Redirect(w, r, finalUrl, http.StatusFound)
-	}
-
-}
-
-func main() {
-	cfgFile := flag.String("c", "config.yml", "configuration file")
-
-	// parse config
-	conf.ParseConfig(*cfgFile)
-
-	log.Println("proxy starts")
-
-	http.HandleFunc("/", redirect)                    //设置访问的路由
-	err := http.ListenAndServe(conf.Conf.Listen, nil) //设置监听的端口
-	if err != nil {
-		log.Fatal("ListenAndServe: ", err)
 	}
 
 }
