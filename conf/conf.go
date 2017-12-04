@@ -10,7 +10,7 @@ import (
 
 type configuration struct {
 	Listen       string            `yaml:"listen"`
-	Scheme       string            `yaml:"scheme"`
+	Host         string            `yaml:"host"`
 	RedirectUrls map[string]string `yaml:"redirect_urls"`
 	AppId        string            `yaml:"appid"`
 	KeyParam     string            `yaml:"key_param"`

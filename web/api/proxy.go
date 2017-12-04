@@ -22,7 +22,7 @@ func ProxyHandler(w http.ResponseWriter, r *http.Request) {
 		if key := r.Form[conf.Conf.KeyParam]; len(key) > 0 {
 			if redirectUrl := conf.Conf.RedirectUrls[key[0]]; len(redirectUrl) > 0 {
 
-				u, _ := url.Parse(redirectUrl)
+				u, _ := url.Parse("")
 
 				q := r.URL.Query()
 
@@ -34,7 +34,7 @@ func ProxyHandler(w http.ResponseWriter, r *http.Request) {
 
 				u.RawQuery = q.Encode()
 
-				finalUrl = u.String()
+				finalUrl = redirectUrl + u.String()
 
 			}
 		}
@@ -53,7 +53,7 @@ func ProxyHandler(w http.ResponseWriter, r *http.Request) {
 		passedQuery.Del("state")
 		passedQuery.Add(isFromWeixinParam, isFromWeixinValue)
 		r.URL.RawQuery = passedQuery.Encode()
-		redirectUri := conf.Conf.Scheme + "://" + r.Host + r.URL.String()
+		redirectUri := conf.Conf.Host + r.URL.String()
 
 		authUrl, _ := url.Parse("https://open.weixin.qq.com/connect/oauth2/authorize")
 
@@ -63,9 +63,10 @@ func ProxyHandler(w http.ResponseWriter, r *http.Request) {
 		authQuery.Set("redirect_uri", redirectUri)
 		authQuery.Set("response_type", "code")
 		authQuery.Set("scope", scope)
-		authQuery.Set("state", state+"#wechat_redirect")
+		authQuery.Set("state", state)
 
 		authUrl.RawQuery = authQuery.Encode()
+		authUrl.Fragment = "wechat_redirect"
 
 		finalUrl = authUrl.String()
 	}
