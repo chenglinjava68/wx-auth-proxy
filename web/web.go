@@ -14,8 +14,6 @@ func Start() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", api.ProxyHandler).Methods(http.MethodGet)
-	r.HandleFunc("/user", api.UserHandler).Methods(http.MethodGet)
-	r.HandleFunc("/user/info", api.UserInfoHandler).Methods(http.MethodGet)
 
 	log.Fatal(http.ListenAndServe(conf.Conf.Listen, r))
 }
