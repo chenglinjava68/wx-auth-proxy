@@ -1,7 +1,7 @@
 package api
 
 import (
-	"wx-auth-proxy/conf"
+	"conf"
 	"fmt"
 	"net/http"
 	"net/url"

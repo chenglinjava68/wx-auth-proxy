@@ -1,11 +1,10 @@
-package main
+package wechat
 
 import (
-	"wx-auth-proxy/conf"
-	"wx-auth-proxy/web"
+	"conf"
 	"flag"
+	"web"
 )
-
 
 func main() {
 	cfgFile := flag.String("c", "config.yml", "configuration file")
@@ -15,4 +14,3 @@ func main() {
 
 	web.Start()
 }
-

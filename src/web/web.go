@@ -1,10 +1,10 @@
 package web
 
 import (
-	"wx-auth-proxy/conf"
-	"wx-auth-proxy/web/api"
+	"conf"
 	"log"
 	"net/http"
+	"web/api"
 
 	"github.com/gorilla/mux"
 )
